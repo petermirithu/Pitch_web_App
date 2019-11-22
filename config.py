@@ -4,7 +4,7 @@ class Config:
   '''
   Class with general configuratiobs for the app
   '''
-  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/pitch'
+  
 
 class ProdConfig(Config):
   '''
@@ -19,8 +19,18 @@ class DevConfig(Config):
 
   DEBUG=True 
 
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/pitch'
+
+class TestConfig(Config):
+  '''
+  test class for running tests
+  '''
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/pitch_test'
+
+#------------------------------------------------------------------------------------------------------------------------------------- 
 config_options={
   'development':DevConfig,
-  'production':ProdConfig  
+  'production':ProdConfig,
+  'test':TestConfig
 }
 
