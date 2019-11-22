@@ -16,12 +16,27 @@ class User(UserMixin,db.Model):
   bio=db.Column(db.String(100))
   profile_pic_path=db.Column(db.String())
   post_user=db.Column(db.DateTime,default=datetime.utcnow)
+  
+  role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
+  pitch_id=db.Column(db.Integer,db.Foreignkey('pitchtable.id'))
+  comment_id=db.Column(db.Integer,db.ForeignKey('commenttable.id'))
+
 
   def __repr__(self):
     '''
     function that basically helps in debugging
     '''
     return f'User {self.username}'
+# /////////////////////////////////////////////////////////////////////////
+class Role(db.Model):
+  '''
+  class that defines role for each user
+  '''
+  __tablename__='roles'
+  id=db.Column(db.Integer, primary_key=True)
+  name=db.Column(db.String(20))
+
+  users_A=db.relationship('User',backref='role',lazy="dynamic")
 
 # /////////////////////////////////////////////////////////////////////////
 class Pitch(db.Model):
@@ -36,6 +51,8 @@ class Pitch(db.Model):
   post=db.Column(db.DateTime,default=datetime.utcnow)
   upvote=db.Column(db.Integer)
   downvote=db.Column(db.Integer)
+
+  user_B=db.relationship('User',backref='pitch',lazy="dynamic")
 
   def __repr__(self):
     '''
@@ -54,6 +71,8 @@ class Comment(db.Model):
   pitch_title=db.Column(db.String(100))
   p_comment=db.Column(db.String(200))
   post_com=db.Column(db.DateTime,default=datetime.utcnow)
+
+  user_c=db.relationship('User',backref='comment',lazy="dynamic")
 
   def __repr__(self):
     '''
