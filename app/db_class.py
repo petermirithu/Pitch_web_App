@@ -18,7 +18,7 @@ class User(UserMixin,db.Model):
   post_user=db.Column(db.DateTime,default=datetime.utcnow)
   
   role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
-  pitch_id=db.Column(db.Integer,db.Foreignkey('pitchtable.id'))
+  pitch_id=db.Column(db.Integer,db.ForeignKey('pitchtable.id'))
   comment_id=db.Column(db.Integer,db.ForeignKey('commenttable.id'))
 
 
