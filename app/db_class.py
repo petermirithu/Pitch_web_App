@@ -1,6 +1,8 @@
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
+from werkzeug.security import generate_password_hash,check_password_hash
+
 
 # /////////////////////////////////////////////////////////////////////////
 class User(UserMixin,db.Model):
@@ -20,6 +22,27 @@ class User(UserMixin,db.Model):
   role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
   pitch_id=db.Column(db.Integer,db.ForeignKey('pitchtable.id'))
   comment_id=db.Column(db.Integer,db.ForeignKey('commenttable.id'))
+
+  @property
+  def password_func(self):
+    '''
+    function that raises an attribute error when one tries accesing a password    
+    '''
+    raise AttributeError('You cannot read the password')
+
+  @password_func.setter
+  def password_funcX(self,password):
+    '''
+    function that generates a hashed password and saves it in the database
+    '''
+    self.pass_word=generate_password_hash(password)  
+
+  def verify_password(self,password):
+    '''
+    function that compares a hashed password and a un hashed password to see if they are same
+    '''
+    return check_password_hash(self.pass_word,password)
+
 
 
   def __repr__(self):
