@@ -11,12 +11,15 @@ db=SQLAlchemy()
 
 # register function
 def create_app(config_name):
+  '''
+  function that registers all blueprints and instances of imports
+  '''
 
   app=Flask(__name__)
 
   bootstrap.init_app(app)
   db.init_app(app)
-  
+
   
   app.config.from_object(config_options[config_name])
 
