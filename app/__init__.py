@@ -11,5 +11,6 @@ def create_app(config_name):
 
   from .lead import lead as lead_blueprint
   app.register_blueprint(lead_blueprint)
-  
+
+  return app
 
