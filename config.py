@@ -4,7 +4,7 @@ class Config:
   '''
   Class with general configuratiobs for the app
   '''
-  pass
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:Lotus@localhost/pitch'
 
 class ProdConfig(Config):
   '''
