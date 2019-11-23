@@ -26,5 +26,9 @@ def create_app(config_name):
   from .lead import lead as lead_blueprint
   app.register_blueprint(lead_blueprint)
 
+  from .verify import verify as verify_blueprint
+  app.register_blueprint(verify_blueprint,url_prefix='/authenticate')
+  
+
   return app
 
