@@ -27,7 +27,7 @@ def signin():
 
       login_user(user,LogForm.remember.data)
 
-      return redirect(request.args.get('next') or url_for('index.html'))
+      return redirect(request.args.get('next') or url_for('main.index'))
 
     flash('Invalid Password')  
 

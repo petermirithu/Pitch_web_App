@@ -4,8 +4,12 @@ class Config:
   '''
   Class with general configuratiobs for the app
   '''
+  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/pitch'
+  
   SECRET_KEY=os.environ.get('SECRET_KEY')
+  UPLOADED_PHOTOS_DEST='app/static/photos'
 
+  
 class ProdConfig(Config):
   '''
   Production configurations child class
@@ -25,7 +29,7 @@ class TestConfig(Config):
   '''
   test class for running tests
   '''
-  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/pitch_test'
+  # SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://pyra:lotus@localhost/pitch_test'
 
 #------------------------------------------------------------------------------------------------------------------------------------- 
 config_options={

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <h3> {{user.username}}</h3>
+
+      <h4>Profile Pic</h4>
+
+      {% if user.profile_pic_path %}
+        <img scr="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+      {% else %}  
+        <p>No profile picture</p>
+      {% endif %}  
+
+      {% if user == current_user %}
+        <form action="{{url_for('lead.update_pic',name=user.username)}}" method="post" enctype="multipart/form-data">
+          <input type="file" name="photo" class="form-control" required >
+
+          <button class="btn btn-success" type="submit">Upload pic</button>
+        </form>  
+      {% endif %}  
+
+      <h4>Bio</h4>
+      {% if user.bio %}
+        <p>{{user.bio }}</p>
+      {% else %}  
+        <p>{{user.username}} has no Bio</p>
+      {% endif %}  
+
+      {% if user ==current_user %}
+        <a class="btn btn-success" href="{{url_for('lead.update_profile',name=user.username)}}">Edit Profile</a>        
+      {% endif %}  
+    </div>
+
+    <div class="col-md-6">
+      <h4>Pitches</h4>
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

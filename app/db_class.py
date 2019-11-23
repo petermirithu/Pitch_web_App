@@ -20,7 +20,7 @@ class User(UserMixin,db.Model):
   __tablename__='usertable'
 
   id=db.Column(db.Integer, primary_key=True)
-  username=db.Column(db.String(20))
+  username=db.Column(db.String(20),unique=True,index = True)
   email=db.Column(db.String(30),unique=True,index=True)
   pass_word=db.Column(db.String(20))
   bio=db.Column(db.String(100))
@@ -32,14 +32,14 @@ class User(UserMixin,db.Model):
   comment_id=db.Column(db.Integer,db.ForeignKey('commenttable.id'))
 
   @property
-  def password_func(self):
+  def password(self):
     '''
     function that raises an attribute error when one tries accesing a password    
     '''
     raise AttributeError('You cannot read the password')
 
-  @password_func.setter
-  def password_func(self,password):
+  @password.setter
+  def password(self,password):
     '''
     function that generates a hashed password and saves it in the database
     '''
