@@ -1,5 +1,6 @@
 from flask import render_template
 from . import lead
+from flask_login import login_required,current_user
 
 
 @lead.route('/')

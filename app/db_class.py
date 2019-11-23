@@ -2,7 +2,15 @@ from . import db
 from flask_login import UserMixin
 from datetime import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
+from . import login_manager
 
+# /////////////////////////////////////////////////////////////////////////
+@login_manager.user_loader
+def load_user(user_id):
+  '''
+  function that queries the database and gets a User with that id
+  '''
+  return User.query.get(int(user_id))
 
 # /////////////////////////////////////////////////////////////////////////
 class User(UserMixin,db.Model):
@@ -31,7 +39,7 @@ class User(UserMixin,db.Model):
     raise AttributeError('You cannot read the password')
 
   @password_func.setter
-  def password_funcX(self,password):
+  def password_func(self,password):
     '''
     function that generates a hashed password and saves it in the database
     '''
