@@ -23,11 +23,11 @@ def signin():
     if user is None:
       flash('Enter a valid Username')
 
-    elif  user is not None and user.verify_password(LogForm.password.data):
+    elif  user is not None and LogForm.password.data==user.pass_word:
 
       login_user(user,LogForm.remember.data)
 
-      return redirect(request.args.get('next') or url_for('main.index'))
+      return redirect(request.args.get('next') or url_for('lead.index'))
 
     flash('Invalid Password')  
 
@@ -57,4 +57,4 @@ def signout():
   view function tha eneable one  to log out of the app
   '''
   logout_user()
-  return redirect(url_for('main.index'))
+  return redirect(url_for('lead.index'))
