@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{category}} pitches</h1>
+  {% if current_user.is_authenticated %}   
+  <div class="btn btn-dark">
+    <a href="/pitch/new/lifestyle">Post pitch</a>    
+  </div>
+  {% else %}
+  <div class="btn btn-dark">
+    <a class="btn btn-outline-danger" href="{{url_for('verify.signin')}}">Sign in to post</a>
+  </div>
+  {% endif %}
+
+
+  {% for pitch in pitches %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <p>Title: {{pitch.p_title}}</p>
+          <p>Pitch: {{pitch.pitch_it}}</p>
+          <p>Posted on: {{pitch.post}}</p>
+          <p>By :{{pitch.poster_name}}
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+  {% endfor %}  
+  
+{% endblock content %}

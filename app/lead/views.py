@@ -1,8 +1,8 @@
 from flask import render_template,redirect,request,url_for,abort
 from . import lead
 from flask_login import login_required,current_user
-from ..db_class import User
-from .forms import UpdateProfile
+from ..db_class import User,Pitch
+from .forms import UpdateProfile,PitchForm
 from .. import db,photos
 
 
@@ -14,6 +14,16 @@ def index():
   title='Pitches'
 
   return render_template('index.html',title=title)
+
+@lead.route('/pitch/<category>')
+def pitch(category):
+  '''
+  view function that renders pich template with pitches for that category
+  '''
+  title=category
+  pitches=Pitch.get_pitches(category)
+  
+  return render_template('pitch.html',title=title,pitches=pitches)
 
 @lead.route('/user/<name>')  
 def profile(name):
@@ -64,3 +74,24 @@ def update_pic(name):
     db.session.commit()
 
   return redirect(url_for('lead.profile',name=name))  
+
+@lead.route('/pitch/new/<category>', methods = ['GET','POST'])
+@login_required
+def new_pitch(category):
+  form=PitchForm()
+
+  category=category
+  if form.validate_on_submit():
+    p_title=form.p_title.data
+    pitch_it=form.pitch_it.data
+    username=current_user.username
+
+    print(f'**************************{username}******************')
+    new_pitch=Pitch(category=category,p_title=p_title,pitch_it=pitch_it,poster_name=username)
+    
+    new_pitch.save_pitch()
+    return redirect(url_for('.pitch',category = category))
+
+  title="{category}"  
+  return render_template('new_pitch.html',title=title,PitchForm=form)
+
