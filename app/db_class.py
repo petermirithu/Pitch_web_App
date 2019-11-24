@@ -75,11 +75,11 @@ class Pitch(db.Model):
   '''
   __tablename__='pitchtable'
   id=db.Column(db.Integer,primary_key=True)
-  category=db.Column(db.String(20))
-  p_title=db.Column(db.String(100))
-  pitch_it=db.Column(db.String(255))
+  category=db.Column(db.String())
+  p_title=db.Column(db.String())
+  pitch_it=db.Column(db.String())
   post=db.Column(db.DateTime,default=datetime.utcnow)
-  posted_by=db.Column(db.String(20))
+  posted_by=db.Column(db.String())
   upvote=db.Column(db.Integer)
   downvote=db.Column(db.Integer)
 
@@ -125,10 +125,10 @@ class Comment(db.Model):
   __tablename__='commenttable'
 
   id=db.Column(db.Integer,primary_key=True)  
-  p_comment=db.Column(db.String(200))
+  p_comment=db.Column(db.String(255))
   post_com=db.Column(db.DateTime,default=datetime.utcnow)
   comment_by=db.Column(db.String(20))
-  pitch_id=db.Column(db.String(20))
+  pitch_id=db.Column(db.String(255))
   pitchID=db.Column(db.Integer,db.ForeignKey("pitchtable.id"))
 
   def save_comment(self):

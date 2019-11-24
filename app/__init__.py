@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 from flask_simplemde import SimpleMDE
+from flask_mail import Mail
 
 
 login_manager=LoginManager()
@@ -14,6 +15,8 @@ login_manager.login_view='verify.login'
 photos=UploadSet('photos',IMAGES)
 
 simple=SimpleMDE()
+
+mail=Mail()
 
 
 bootstrap=Bootstrap()
@@ -39,10 +42,8 @@ def create_app(config_name):
   configure_uploads(app,photos)
 
   simple.init_app(app)
-  
-  
 
-  
+  mail.init_app(app)
 
   from .lead import lead as lead_blueprint
   app.register_blueprint(lead_blueprint)

@@ -4,7 +4,7 @@ from .. import db
 from ..db_class import User
 from .forms import SignUpForm,SignInForm
 from flask_login import login_user,logout_user,login_required,current_user
-
+from ..email import mail_message
 
 
 @verify.route('/signin',methods=["GET","POST"])
@@ -41,6 +41,8 @@ def signup():
     user = User(email = form.email.data, username=form.username.data,pass_word=form.password.data)
     db.session.add(user)
     db.session.commit()
+
+    mail_message("Welcome to Pitch_web_app","email/welcome_user",user.email,user=user)
 
     return redirect(url_for('verify.signin'))
     

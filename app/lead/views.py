@@ -76,7 +76,7 @@ def update_profile(name):
   return render_template('profile/update.html',form=form)  
 
 
-@lead.route('/user/<name>/update/pic',methods=["POST"])
+@lead.route('/user/<name>/update/pic',methods=['POST'])
 @login_required
 def update_pic(name):
   '''
@@ -87,7 +87,7 @@ def update_pic(name):
     filename=photos.save(request.files['photo'])
     path=f'photos/{filename}'
     user.profile_pic_path = path
-
+    
     db.session.commit()
 
   return redirect(url_for('lead.profile',name=name))  

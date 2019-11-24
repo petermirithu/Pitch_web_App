@@ -1,0 +1,6 @@
+Hello{{user.name}}
+Welcome to Pitch_web_app.
+We have just noticed your presence and we would like to wish you all the best as you interact with our site.
+
+CEO: Pyra
+
