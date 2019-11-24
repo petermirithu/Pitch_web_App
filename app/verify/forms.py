@@ -21,12 +21,12 @@ class SignUpForm(FlaskForm):
     if User.query.filter_by(email=data_field.data).first():
       raise ValidationError('That Email is taken.Please use another email')
 
-    def validate_username(self,data_field):
-      '''
-      function that validates no username duplicates
-      '''
-      if User.query.filter_by(username=data_field.data).first():
-        raise ValidationError('That username is taken.Please be creative')
+  def validate_username(self,data_field):
+    '''
+    function that validates no username duplicates
+    '''
+    if User.query.filter_by(username=data_field.data).first():
+      raise ValidationError('That username is taken.Please be creative')
 
 class SignInForm(FlaskForm):
   '''
