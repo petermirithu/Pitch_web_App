@@ -13,5 +13,12 @@ class PitchForm(FlaskForm):
   class that defines fields for posting new pitch
   '''
   p_title=StringField('Enter Pitch Title',validators=[Required()])
-  pitch_it=TextAreaField('Enter your 60 seconds pitch',validators=[Required()])
+  pitch_it=TextAreaField('Enter your 60 seconds pitch')
+  submit=SubmitField('Post')
+
+class CommentForm(FlaskForm):
+  '''
+  class that defines fields for posting a new comment
+  '''
+  p_comment=TextAreaField('Enter your comment',validators=[Required()])
   submit=SubmitField('Post')

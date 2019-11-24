@@ -79,7 +79,7 @@ class Pitch(db.Model):
   p_title=db.Column(db.String(100))
   pitch_it=db.Column(db.String(255))
   post=db.Column(db.DateTime,default=datetime.utcnow)
-  poster_name=db.Column(db.String())
+  posted_by=db.Column(db.String(20))
   upvote=db.Column(db.Integer)
   downvote=db.Column(db.Integer)
 
@@ -115,14 +115,29 @@ class Comment(db.Model):
   class that defines all properties for a comment
   '''
   __tablename__='commenttable'
-  id=db.Column(db.Integer,primary_key=True)
-  pitch_id=db.Column(db.Integer)
-  pitch_title=db.Column(db.String(100))
+
+  id=db.Column(db.Integer,primary_key=True)  
   p_comment=db.Column(db.String(200))
   post_com=db.Column(db.DateTime,default=datetime.utcnow)
-  pitch_id=db.Column(db.Integer,db.ForeignKey("pitchtable.id"))
-  
+  comment_by=db.Column(db.String(20))
+  pitch_id=db.Column(db.String(20))
+  pitch=db.Column(db.Integer,db.ForeignKey("pitchtable.id"))
 
+  def save_comment(self):
+    '''
+    function tha saves a new comment
+    '''
+    db.session.add(self)
+    db.session.commit()
+
+  @classmethod
+  def get_comments(cls,id):
+    '''
+    function that retrives comment from database
+    '''    
+    comments= Comment.query.filter_by(pitch_id=id).all()
+
+    return comments
 
   def __repr__(self):
     '''

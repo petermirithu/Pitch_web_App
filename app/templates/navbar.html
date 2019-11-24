@@ -8,12 +8,20 @@
 
         <li class="nav-item active">
           <a class="nav-link btn btn-outline-success" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>   
+        </li>         
 
-        <li class="nav-item active">
-          <a class="nav-link btn btn-outline-success" href="/pitch/lifestyle">Lifestyle</a>
+        <li class="nav-item">
+          <a class="nav-link"></a>
         </li>
-        
+        <div class="dropdown">
+          <button class="nav-link btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="nav-link btn btn-outline-success" href="/pitch/lifestyle">Lifestyle</a>
+            <a class="nav-link btn btn-outline-success" href="/pitch/farm_pitches">Farm_pitches</a>
+            <a class="nav-link btn btn-outline-success" href="/pitch/lifestyle">Lifestyle</a>
+          </div>
+        </div>
+
       </ul>
       <ul class="navbar-nav ml-auto">  
         {% if current_user.is_authenticated %}   
@@ -21,6 +29,10 @@
 
           <li class="nav-item">
             <a class="btn btn-outline-danger" href="{{url_for('lead.profile',name=current_user.username)}}">Profile</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link"></a>
           </li>
 
           <li class="nav-item">
