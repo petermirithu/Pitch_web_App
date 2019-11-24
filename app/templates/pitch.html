@@ -14,30 +14,27 @@
 
           {% for pitch in pitches %}
           <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card">
-                  <p>Title: {{pitch.p_title}}</p>
-                  <p>{{pitch.pitch_it|safe}}</p>
-                  <p>Posted on: {{pitch.post}}</p>
-                  <p>By :{{pitch.posted_by}}
+            <div class="row">              
+              <div class="card">
+                <p><b>Title: {{pitch.p_title}}</b></p>
+                <p>{{pitch.pitch_it|safe}}</p>
+                <p>Posted on: {{pitch.post}}</p>
+                <p>By :{{pitch.posted_by}}
 
-                  
-                  {% if current_user.is_authenticated %}    
-                  <div class="text-center">
-                    <button class="btn btn-outline-warning">Like</button>                    
-                    <button class="btn btn-outline-warning">Dislike</button>    
-                  </div>
-                  <div class="btn btn-info">            
-                    <a href="/pitch/comment/{{pitch.id}}">Comments</a>    
-                  </div>
-                  {% else %}
-                  <div class="btn btn-info">
-                    <a class="btn btn-outline-danger" href="{{url_for('verify.signin')}}">Sign in to comment</a>
-                  </div>
-                  {% endif %}
-                </div>  
-              </div>  
+                
+                {% if current_user.is_authenticated %}    
+                <div class="text-center">
+                  <button class="btn btn-outline-warning">Like</button>                    
+                  <button class="btn btn-outline-warning">Dislike</button>    
+                </div>
+                
+                <a class="btn btn-info" style="color:black" href="/pitch/comment/{{pitch.id}}">Comments</a>                      
+                {% else %}
+                <div class="btn btn-info">
+                  <a class="btn btn-outline-danger" href="{{url_for('verify.signin')}}">Sign in to comment</a>
+                </div>
+                {% endif %}
+              </div>                
             </div>  
           </div>  
           {% endfor %}  
