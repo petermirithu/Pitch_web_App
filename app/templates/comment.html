@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Comment Section</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        {% if comments %}   
+
+          {% for comment in comments %}
+            <p>{{comment.p_comment}}
+          {% endfor %}
+
+        {% else %}  
+          <p class="btn-danger">No comments available</p>
+        {% endif %}
+      </div>
+
+      <div class="col-md-6">        
+          <a class="btn btn-primary" href="/pitch/comment/new/{{pitch_id}}" style="color:black">Comment</a>            
+      </div> 
+
+    </div>
+  </div>
+{% endblock %}
