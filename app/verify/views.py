@@ -16,10 +16,7 @@ def signin():
 
   if LogForm.validate_on_submit():
     user=User.query.filter_by(username = LogForm.username.data).first()
-    print('***********************User*****************')
-    print(f'{user.username}')
-    print(f'{user.pass_word}')
-
+    
     if user is None:
       flash('Enter a valid Username')
 
@@ -44,10 +41,9 @@ def signup():
     user = User(email = form.email.data, username=form.username.data,pass_word=form.password.data)
     db.session.add(user)
     db.session.commit()
-    # title="New Account"
 
     return redirect(url_for('verify.signin'))
-
+    
   return render_template('verify/signup.html',SignUpForm=form)
 
 @verify.route('/signout')

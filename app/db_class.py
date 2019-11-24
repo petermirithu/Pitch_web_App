@@ -102,6 +102,14 @@ class Pitch(db.Model):
     '''    
     pitches= Pitch.query.filter_by(category=category).all()
     return pitches
+
+  @classmethod
+  def get_person_pitches(cls,posted_by):
+    '''
+    function that returns pitches posted by someone
+    '''
+    personal_pitch=Pitch.query.filter_by(posted_by=posted_by)
+    return personal_pitch
     
   def __repr__(self):
     '''
@@ -121,7 +129,7 @@ class Comment(db.Model):
   post_com=db.Column(db.DateTime,default=datetime.utcnow)
   comment_by=db.Column(db.String(20))
   pitch_id=db.Column(db.String(20))
-  pitch=db.Column(db.Integer,db.ForeignKey("pitchtable.id"))
+  pitchID=db.Column(db.Integer,db.ForeignKey("pitchtable.id"))
 
   def save_comment(self):
     '''

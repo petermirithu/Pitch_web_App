@@ -14,7 +14,7 @@ def index():
   view root page function that returns index page
   '''
   title='Pitches'
-
+  
   return render_template('index.html',title=title)
 
 @lead.route('/pitch/<category>')
@@ -36,9 +36,9 @@ def comment(id):
   pitch_id=pitch.id
   
   title='Comment'
-  # comments=Comment.get_comments(id)
+  comments=Comment.get_comments(id)
     
-  return render_template('comment.html',title=title,pitch_id=pitch_id)
+  return render_template('comment.html',title=title,pitch_id=pitch_id,comments=comments)
 
 @lead.route('/user/<name>')  
 def profile(name):
@@ -47,10 +47,12 @@ def profile(name):
   '''
   user=User.query.filter_by(username=name).first()
 
+  personal_pitches=Pitch.get_person_pitches(name)
+
   if user is None:
     abort(404)
 
-  return render_template("profile/profile.html",user=user)
+  return render_template("profile/profile.html",user=user,personal_pitches=personal_pitches)
 
 @lead.route('/user/<name>/update', methods=['GET','POST'])  
 @login_required
@@ -113,13 +115,14 @@ def new_pitch(category):
   title=category
   return render_template('new_pitch.html',title=title,PitchForm=form)
 
-@lead.route('/pitch/comment/new/<id>')
+@lead.route('/pitch/comment/new/<id>', methods=['GET','POST'])
 @login_required
 def new_comment(id):
   '''
   view function that registers new comments for a pitch
   '''  
   form=CommentForm()
+
 
   if form.validate_on_submit():    
     p_comment=form.p_comment.data
@@ -128,7 +131,7 @@ def new_comment(id):
 
     new_comment.save_comment()
 
-    return redirect(url_for('lead.index',id=id))
+    return redirect(url_for('.comment',id=id))
 
   title='Comment'
   return render_template('new_comment.html',title=title,CommentForm=form)  
