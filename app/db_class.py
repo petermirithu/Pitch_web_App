@@ -1,3 +1,4 @@
+#pylint: skip-file
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
@@ -20,13 +21,13 @@ class User(UserMixin,db.Model):
   __tablename__='usertable'
 
   id=db.Column(db.Integer, primary_key=True)
-  username=db.Column(db.String(20),index = True)
-  email=db.Column(db.String(30),unique=True,index=True)
-  pass_word=db.Column(db.String(20))
-  bio=db.Column(db.String(100))
+  username=db.Column(db.String(255),index = True)
+  email=db.Column(db.String(255),unique=True,index=True)
+  pass_hash=db.Column(db.String())
+  bio=db.Column(db.String(255))
   profile_pic_path=db.Column(db.String())
   post_user=db.Column(db.DateTime,default=datetime.utcnow)
-  
+  site=db.Column(db.String())
   role_id=db.Column(db.Integer,db.ForeignKey('roles.id'))
   pitch=db.relationship('Pitch',backref = 'pitch',lazy='dynamic')
   
@@ -42,13 +43,13 @@ class User(UserMixin,db.Model):
     '''
     function that generates a hashed password and saves it in the database
     '''
-    self.pass_word=generate_password_hash(password)  
+    self.pass_hash=generate_password_hash(password)  
 
   def verify_password(self,password):
     '''
     function that compares a hashed password and a un hashed password to see if they are same
     '''
-    return check_password_hash(self.pass_word,password)
+    return check_password_hash(self.pass_hash,password)
 
 
 
@@ -64,7 +65,7 @@ class Role(db.Model):
   '''
   __tablename__='roles'
   id=db.Column(db.Integer, primary_key=True)
-  name=db.Column(db.String(20))
+  name=db.Column(db.String(255))
 
   users_A=db.relationship('User',backref='role',lazy="dynamic")
 
@@ -110,6 +111,7 @@ class Pitch(db.Model):
     '''
     personal_pitch=Pitch.query.filter_by(posted_by=posted_by)
     return personal_pitch
+  
     
   def __repr__(self):
     '''
@@ -127,7 +129,7 @@ class Comment(db.Model):
   id=db.Column(db.Integer,primary_key=True)  
   p_comment=db.Column(db.String(255))
   post_com=db.Column(db.DateTime,default=datetime.utcnow)
-  comment_by=db.Column(db.String(20))
+  comment_by=db.Column(db.String(255))
   pitch_id=db.Column(db.String(255))
   pitchID=db.Column(db.Integer,db.ForeignKey("pitchtable.id"))
 

@@ -20,7 +20,7 @@ def signin():
     if user is None:
       flash('Enter a valid Username')
 
-    elif  user is not None and LogForm.password.data==user.pass_word:
+    elif  user is not None and user.pass_hash==LogForm.password.data:
 
       login_user(user,LogForm.remember.data)
 
@@ -38,7 +38,7 @@ def signup():
   '''
   form =SignUpForm()
   if form.validate_on_submit():
-    user = User(email = form.email.data, username=form.username.data,pass_word=form.password.data)
+    user = User(email = form.email.data, username=form.username.data,pass_hash=form.password.data)
     db.session.add(user)
     db.session.commit()
 
