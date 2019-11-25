@@ -12,7 +12,7 @@
       <h3 style="color:gold"><b><u>{{user.username}}</u></b></h3>
 
       {% if user.profile_pic_path %}
-        <img scr="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+        <img class="card" src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail" width="250px" height="250px">        
       {% else %}  
         <p style="color:azure">No profile picture</p>
       {% endif %}  
