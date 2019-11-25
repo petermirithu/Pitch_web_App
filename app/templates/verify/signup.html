@@ -9,8 +9,13 @@
 
 {% block content %}  
 <div class="container-fluid">
-
-  {{wtf.quick_form(SignUpForm)}}
-
+<h1 class="text-center">Sign Up</h1>
+  <div class="row">
+    <div class="col-md-2"></div>              
+      <div class="col-md-8">
+        {{wtf.quick_form(SignUpForm)}}
+      </div>  
+    </div>
+  </div>
 </div>
 {% endblock content %}
