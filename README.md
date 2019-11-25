@@ -1,10 +1,10 @@
-# [Pitch_web_App](https://github.com/petermirithu/Pitch_web_App)
+# [Pitch_web_App](https://pyrapitchapp.herokuapp.com/)
 
 This project was generated with [Python](https://www.python.org/) version 3.8.0 <br>
 
 ![picture](./app/static/photos/clyde.png)
 
-To view the site Click [Pitch_web_app]()
+To view the site Click [Pitch_web_app](https://pyrapitchapp.herokuapp.com/)
 
 ## Author: 
   * [Peter Mirithu](https://github.com/petermirithu/Pitch_web_App)
