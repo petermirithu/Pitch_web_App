@@ -41,16 +41,15 @@ To view the site Click [Pitch_web_app](https://pyrapitchapp.herokuapp.com/)
   $ python3.6 manage.py test
   ```
 ## Bug and Solution.
- ```
+ 
  * BUG
- ~ One of the most dominant bug is when one is trying to create a new account.
+  ~ One of the most dominant bug is when one is trying to create a new account.
  
  * SOLUTION
- ~ After creating a account, you will probably land on an internal server error page.
- ~ After landing on this page just go back to the [Pitch_Web_App](https://pyrapitchapp.herokuapp.com/) and click on sign in    button.
- ~Fill in the your username and password then Submit the form and you will be Successfully signed in the App.
+  ~ After creating a account, you will probably land on an internal server error page.
+  ~ After landing on this page just go back to the [Pitch_Web_App](https://pyrapitchapp.herokuapp.com/) and click on sign in     button.
+  ~Fill in the your username and password then Submit the form and you will be Successfully signed in the App.
  
- ```
 ## Technologies Used
   This project was generated with
   * [Python](https://www.python.org/) version 3.8.0. 
