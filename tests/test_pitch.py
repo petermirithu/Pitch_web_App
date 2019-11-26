@@ -10,8 +10,8 @@ class PitchTest(unittest.TestCase):
     '''
     testcase that creates an object pitch
     '''
-    # self.user_pyra=User(username="Pyra",pass_word='Lotus',email='pyra@yahoo.com')
-    self.new_pitch=Pitch(category='lifestyle',p_title='Life is great',pitch_it='Life is good enjoy it to tha fullest',post='saturday',upvote=20,downvote=10)
+    self.user_pyra=User(username="Pyra",pass_word='Lotus',email='pyra@yahoo.com')
+    self.new_pitch=Pitch(category='lifestyle',p_title='Life is great',pitch_it='Life is good enjoy it to tha fullest',post='saturday',posted_by='pyra',upvote=20,downvote=10)
 
   def tearDown(self):
     '''
@@ -30,7 +30,8 @@ class PitchTest(unittest.TestCase):
     self.assertEquals(self.new_pitch.post,'saturday')
     self.assertEquals(self.new_pitch.upvote,20)
     self.assertEquals(self.new_pitch.downvote,10)
-    # self.assertEquals(self.new_pitch.user,self.user_pyra)
+
+    self.assertEquals(self.new_pitch.user,self.user_pyra)
 
   def test_save(self):
     '''
@@ -46,6 +47,16 @@ class PitchTest(unittest.TestCase):
     self.new_pitch.save_pitch()
     got_pitch=Pitch.get_pitches('lifestyle')
     self.assertTrue(len(got_pitch)==1)
+
+  def test_get_personal_pitches(self):
+    '''
+    testcase to check if one can get picthes based who posted them
+    '''
+    self.new_pitch.save_pitch()
+    pyrapitches=Pitch.get_person_pitches('pyra')
+    self.assertTrue(len(pyrapitches)==1)
+    
+
 
     
 
