@@ -1,10 +1,10 @@
-# [Pitch_web_App](https://github.com/petermirithu/Pitch_web_App)
+# [Pitch_web_App](https://pyrapitchapp.herokuapp.com/)
 
 This project was generated with [Python](https://www.python.org/) version 3.8.0 <br>
 
 ![picture](./app/static/photos/clyde.png)
 
-To view the site Click [Pitch_web_app]()
+To view the site Click [Pitch_web_app](https://pyrapitchapp.herokuapp.com/)
 
 ## Author: 
   * [Peter Mirithu](https://github.com/petermirithu/Pitch_web_App)
@@ -40,7 +40,19 @@ To view the site Click [Pitch_web_app]()
   ```
   $ python3.6 manage.py test
   ```
-
+  <hr>
+  
+## Bug and Solution.
+ 
+  * BUG <br>
+   ~ One of the most dominant bug is when one is trying to create a new account.
+ 
+  * SOLUTION <br>
+   ~ After creating an account, you will probably land on an "internal server error page". <br>
+   ~ After landing on this page just go back to the [Pitch_Web_App](https://pyrapitchapp.herokuapp.com/) and click on sign in     button.<br>
+   ~Fill in the your username and password then Submit the form and you will be Successfully signed in the App.<br>
+   <hr>
+   
 ## Technologies Used
   This project was generated with
   * [Python](https://www.python.org/) version 3.8.0. 
