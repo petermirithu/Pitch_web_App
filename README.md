@@ -1,4 +1,4 @@
-# [Pitch_web_App](https://pyrapitchapp.herokuapp.com/)
+# [Pitch_web_App](https://github.com/petermirithu)
 
 This project was generated with [Python](https://www.python.org/) version 3.8.0 <br>
 
@@ -68,7 +68,7 @@ To view the site Click [Pitch_web_app](https://pyrapitchapp.herokuapp.com/)
 
  ### License
 * This project is licensed by [MIT License](LICENSE.txt)<br>
-  Copyright (c) [Peter Mirithu](https://github.com/petermirithu/Pitch_web_App) 2019<br>
+  Copyright (c) [Peter Mirithu](https://github.com/petermirithu) 2019<br>
   
   
 
